@@ -1,4 +1,4 @@
-Voici mes notes pour les créations de server linux
+Voici mes notes pour Born2beRoot
 
 -------------------------ligne-de-commande------------------------
 
