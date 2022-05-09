@@ -1,9 +1,9 @@
 *****  SERVICES  *******
-service --status-all
+sudo service --status-all
 systemctl restart "service"
 uname -a
 hostname
-hostnamectl set_hostname "nouveau nom"
+hostnamectl set-hostname "nouveau nom"
 +  /etc/hosts -> edit 127.0.0.1 "old hostname"
 lsblk
 free -m
