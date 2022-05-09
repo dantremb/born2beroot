@@ -1,0 +1,81 @@
+SERVICES:	service --status-all
+
+UFW:		sudo ufw allow "program"
+			sudo ufw allow "port"
+			sudo ufw status numbered
+			sudo ufw delete (rule number)
+
+SSH:		systemctl status ssh
+			sudo service ssh status
+			/etc/ssh/sshd_config
+			ssh "user"@127.0.0.1 -p 4242
+
+SUDO:		su
+			sudo visudo
+
+USER:		sudo adduser "user"
+
+PASSWORD:	chage -l "user"
+			sudo passwd "user"
+			/etc/pam.d/common-password
+
+GROUPS:		getent group "group name"
+			groups "user"
+			sudo groupadd "group name"
+			sudo usermod -aG "group" "user"
+
+SYSTEM:		sudo systemctl restart "service"
+			uname -a
+			hostname
+			sudo hostnamectl set_hostname "nouveau nom"
+			/etc/hosts   ---> edit 127.0.0.1 "old hostname"
+			lsblk
+			free -m
+			df -Bg
+			ss
+			cat /proc/stat
+			lscpu
+			sudo crontab -e -u root
+			apt-get update	
+			apt-get upgrade
+			sudo nano /etc/systemd/logind.conf ##
+
+MARIADB:	sudo mysql
+			show database;
+			CREATE DATABASE "database";
+			CREATE USER 'database'@'localhost' IDENTIFIED BY 'password';
+			GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpress'@'localhost';
+			FLUSH PRIVILEGES;
+			quit;
+
+LIGHTTPD:	systemctl status lighttpd
+			/etc/lighttpd/lighttpd.conf
+				- edit ---> server.document-root        = "/var/www"
+
+			apt-get install tree -y
+			
+PHP:		sudo systemctl status php7.3-fpm   <-- votre version
+			/etc/php/7.4/fpm/php.ini
+				- edit ---> cgi.fix_pathinfo=1
+			/etc/php/7.4/fpm/pool.d/www.conf
+				- edit ---> "bin-path" => "/usr/bin/php-cgi",
+							"socket" => "/var/run/lighttpd/php.socket"
+				- to   ---> "host" => "127.0.0.1",
+							"port" => "9000",
+
+WORDPRESS:	/var/www/wordpress/wp-config.php
+				- edit ---> define( 'DB_NAME', 'database' )
+							define( 'DB_USER', 'user' )
+							define( 'DB_PASSWORD', 'password' )
+
+FAIL2BAN:	sudo systemctl status fail2ban
+			/etc/fail2ban/jail.local
+				- edit ---> enabled  = true
+							maxretry = 3
+							findtime = 10m
+							bantime  = 1d
+							port     = 4242
+			sudo fail2ban-client status
+			sudo fail2ban-client status sshd
+			sudo tail -f /var/log/fail2ban.log
+
