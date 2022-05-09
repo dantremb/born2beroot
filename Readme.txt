@@ -47,7 +47,7 @@ MARIADB:	sudo mysql
 			CREATE DATABASE "database";
 			CREATE USER 'database'@'localhost' IDENTIFIED BY 'password';
 			GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpress'@'localhost';
-			FLUSH PRIVILEGES;
+			FLUSH PRIVILEGES; (non-obligatoire avec GRANT)
 			quit;
 
 LIGHTTPD:	systemctl status lighttpd
