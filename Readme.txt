@@ -30,7 +30,6 @@ SYSTEM:		sudo systemctl restart "service"
 			hostname
 			sudo hostnamectl set_hostname "nouveau nom"
 			/etc/hosts   ---> edit 127.0.0.1 "old hostname"
-			lsblk
 			free -m
 			df -Bg
 			ss
@@ -39,6 +38,10 @@ SYSTEM:		sudo systemctl restart "service"
 			sudo crontab -e -u root
 			apt-get update	
 			apt-get upgrade
+
+HDD:		lsblk
+			mkfs [options] [-t type fs-options] device [size]
+			(ex: sudo mkfs -t ext4 /dev/sdb1)
 
 -----------------------------  BONUS  ----------------------------
 
